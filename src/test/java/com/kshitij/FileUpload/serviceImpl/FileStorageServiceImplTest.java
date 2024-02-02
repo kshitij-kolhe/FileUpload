@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -103,5 +104,20 @@ class FileStorageServiceImplTest {
         final List<String> files = fileStorageService.getAllFileNames();
 
         Assertions.assertTrue(files.isEmpty());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"File content 1 for test", "File content 2 for test"})
+    void testReadFile_whenFilePresent_returnFileInputStream(final String text) throws IOException {
+        final InputStream expectedFileStream = new ByteArrayInputStream(text.getBytes());
+
+        fileStorageService.createNew("testingFile.txt", expectedFileStream);
+
+        final InputStream actualFileStream = fileStorageService.readFile("testingFile.txt");
+
+        expectedFileStream.reset();
+        Assertions.assertArrayEquals(expectedFileStream.readAllBytes(), actualFileStream.readAllBytes());
+
+        Files.deleteIfExists(Path.of(FOLDER + "/testingFile.txt"));
     }
 }

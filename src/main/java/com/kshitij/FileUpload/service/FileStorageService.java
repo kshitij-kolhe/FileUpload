@@ -16,5 +16,7 @@ public interface FileStorageService {
 
     void createNew(final String file, final InputStream bytes) throws IOException;
 
+    InputStream readFile(final String file) throws IOException;
+
     List<String> getAllFileNames();
 }

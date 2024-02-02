@@ -7,10 +7,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.util.List;
 
 @Component
@@ -34,6 +31,11 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Override
     public void createNew(final String file, final InputStream fileStream) throws IOException {
         Files.write(Path.of(FOLDER + "/" + file), fileStream.readAllBytes());
+    }
+
+    @Override
+    public InputStream readFile(final String file) throws IOException {
+        return Files.newInputStream(Path.of(FOLDER + "/" + file));
     }
 
     @Override
