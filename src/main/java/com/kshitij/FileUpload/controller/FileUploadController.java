@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -25,7 +24,7 @@ public class FileUploadController {
         this.fileStorageService = fileStorageService;
     }
 
-    @PostMapping(value = "file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void uploadFile(@RequestParam("file")MultipartFile file, final HttpServletResponse httpServletResponse) {
 
         try (InputStream fileStream = file.getInputStream()) {
@@ -37,7 +36,7 @@ public class FileUploadController {
         httpServletResponse.setStatus(HttpServletResponse.SC_CREATED);
     }
 
-    @GetMapping("files")
+    @GetMapping("/files")
     public List<String> listFiles(final HttpServletResponse httpServletResponse) {
         final List<String> files = fileStorageService.getAllFileNames();
 

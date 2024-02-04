@@ -11,6 +11,7 @@
 	<groupId>com.kshitij</groupId>
 	<artifactId>FileUpload</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>FileUpload</name>
 	<description>Demo project for file upload and download</description>
 	<properties>

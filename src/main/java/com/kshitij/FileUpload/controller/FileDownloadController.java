@@ -23,7 +23,7 @@ public class FileDownloadController {
         this.fileStorageService = fileStorageService;
     }
 
-    @GetMapping(value = "file", produces = {MediaType.APPLICATION_OCTET_STREAM_VALUE})
+    @GetMapping(value = "/file")
     public ResponseEntity<byte[]> downloadFile(@RequestParam final String file) throws IOException {
 
         if (fileStorageService.isFilePresent(file)) {
