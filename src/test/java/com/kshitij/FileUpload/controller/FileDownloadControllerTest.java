@@ -43,8 +43,8 @@ class FileDownloadControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {3, 5, 1})
-    void downloadFile(final int size) throws Exception {
+    @ValueSource(strings = {"File random text 1", "file random text 2"})
+    void testDownloadFile_whenFileIsPresent_thenDownloadTheFile(final String text) throws Exception {
         //file parameters for GET request to download file
         final LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("file", "app.pdf");
@@ -55,13 +55,13 @@ class FileDownloadControllerTest {
 
         //Creating a file on the server to be downloaded
         fileStorageService.createFolder();
-        fileStorageService.createNew("app.pdf", new ByteArrayInputStream("File created for downloading".getBytes()));
+        fileStorageService.createNew("app.pdf", new ByteArrayInputStream(text.getBytes()));
 
         //sending request
         final MvcResult mvcResult = mockMvc.perform(request).andReturn();
 
         //Asserting
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus());
-        Assertions.assertArrayEquals("File created for downloading".getBytes(), mvcResult.getResponse().getContentAsByteArray());
+        Assertions.assertArrayEquals(text.getBytes(), mvcResult.getResponse().getContentAsByteArray());
     }
 }
