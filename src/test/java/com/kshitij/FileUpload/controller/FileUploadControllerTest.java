@@ -27,7 +27,6 @@ import java.util.List;
 import static com.kshitij.FileUpload.service.FileStorageService.FOLDER;
 
 
-//@WebMvcTest(controllers = FileUploadController.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 class FileUploadControllerTest {
