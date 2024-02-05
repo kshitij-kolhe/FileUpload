@@ -1,7 +1,6 @@
 package com.kshitij.FileUpload.serviceImpl;
 
 import com.kshitij.FileUpload.service.FileStorageService;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -19,7 +18,7 @@ public class FileStorageServiceImpl implements FileStorageService {
     }
 
     @Override
-    public void creatFolder() throws IOException {
+    public void createFolder() throws IOException {
         Files.createDirectories(Path.of(FOLDER));
     }
 

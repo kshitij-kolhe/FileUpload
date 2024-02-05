@@ -34,7 +34,7 @@ class FileStorageServiceImplTest {
 
     @Test
     void testCreatFolder_whenFolderCreated_returnTrue() throws IOException {
-        fileStorageService.creatFolder();
+        fileStorageService.createFolder();
         Assertions.assertTrue(Files.isDirectory(Path.of(FOLDER)));
 
         Files.deleteIfExists(Path.of(FOLDER));

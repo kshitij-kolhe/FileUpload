@@ -50,7 +50,7 @@ public class FileUploadController {
     }
 
     private void storeFile(final MultipartFile file, final InputStream fileStream) throws IOException {
-        fileStorageService.creatFolder();
+        fileStorageService.createFolder();
 
         if (fileStorageService.isFilePresent(file.getOriginalFilename())) {
             fileStorageService.replaceExisting(file.getOriginalFilename(), fileStream);

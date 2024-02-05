@@ -10,7 +10,7 @@ public interface FileStorageService {
 
     boolean isFilePresent(final String file);
 
-    void creatFolder() throws IOException;
+    void createFolder() throws IOException;
 
     void replaceExisting(final String file, final InputStream fileStream) throws IOException;
 
